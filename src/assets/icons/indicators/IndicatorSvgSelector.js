@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-
-export const IndicatorSvgSelector = (id) => {
+export const IndicatorSvgSelector = ({id}) => {
   switch (id) {
     case 'temp':
       return (
