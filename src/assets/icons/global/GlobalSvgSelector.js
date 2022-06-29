@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface Props {
-  id: string;
-}
-
-export const GlobalSvgSelector = ({ id }: Props) => {
+export const GlobalSvgSelector = (id) => {
   switch (id) {
     case 'header-logo':
       return (
