@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const GlobalSvgSelector = (id) => {
+export const GlobalSvgSelector = ({id}) => {
   switch (id) {
     case 'header-logo':
       return (

@@ -7,7 +7,7 @@ const HomePage = () => {
     return (
         <div>
             <Searchbar/>
-            {/* <ThisDay/> */}
+            <ThisDay/>
         </div>
 
     );
