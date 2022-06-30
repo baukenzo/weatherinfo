@@ -1,31 +1,35 @@
 import React from 'react';
-import { useState } from 'react';
-import SearchIcon from '../../images/searchSvg.svg';
+import { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { typingInSearch, searchedCitiesList } from '../../store/actions';
+
+import SearchIcon from '../../images/searchSvg.svg';
 
 const Searchbar = () => {
-    const [query, setQuery] = useState('');
-    const [list, setList] = useState([]);
+    console.log('render')
+    const {query, citiesList} = useSelector(state => state);
+    const dispatch = useDispatch();
 
-    function onInputChange(value) {
-        setQuery(value)
+    const onInputChange = useCallback((value) => {
+        dispatch(typingInSearch(value))
 
         if (value.length > 3) {
             // fetch(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${query}`).then(response => response.json()).then(response=> setList(response)).catch(response=> setList(response))
-            axios.get(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${query}`).then(res => setList(res.data))
-            console.log(list)
+            axios.get(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${value}`).then(res => dispatch(searchedCitiesList(res.data)))
+            console.log(citiesList)
         }
 
         if (value.length < 4) {
-            setList([])
-            console.log(list)
+            dispatch(searchedCitiesList([]))
+            console.log(citiesList, 'uadalena')
         }
         
-    }
+    }, [dispatch, citiesList])
 
     function onAutoSearchClick(value) {
-        setQuery(value);
-        setList([])
+        dispatch(typingInSearch(value))
+        dispatch(searchedCitiesList([]))
     }
 
 
@@ -42,10 +46,10 @@ const Searchbar = () => {
                         <img src={SearchIcon} alt="" />
                     </button>
                 </form>
-                {list && (
+                {citiesList && (
                     <div className='cityWrap' >
-                        {list.map(cities => {
-                            return  <input key={cities.id} type='text' readOnly className='city' onClick={(e) => onAutoSearchClick(e.target.value)} value={cities.name}/>
+                        {citiesList.map(cities => {
+                            return  <input key={cities.id} type='text' readOnly className='city' onClick={() => onAutoSearchClick(cities.name)} value={cities.name}/>
                         })}
                     </div>
                 )}
