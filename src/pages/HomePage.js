@@ -9,6 +9,7 @@ const HomePage = () => {
     return (
         <div className={s.home}>
             <Searchbar/>
+            <br/>
             <div className={s.wrapper}>
                 <ThisDay/>
                 <ThisDayInfo />

@@ -8,7 +8,7 @@ import SearchIcon from '../../images/searchSvg.svg';
 
 const Searchbar = () => {
     console.log('render')
-    const {query, citiesList} = useSelector(state => state);
+    const { query, citiesList } = useSelector(state => state);
     const dispatch = useDispatch();
 
     const onInputChange = useCallback((value) => {
@@ -24,7 +24,7 @@ const Searchbar = () => {
             dispatch(searchedCitiesList([]))
             console.log(citiesList, 'uadalena')
         }
-        
+
     }, [dispatch, citiesList])
 
     function onAutoSearchClick(value) {
@@ -37,11 +37,11 @@ const Searchbar = () => {
         <div className='search-wrap'>
             <div className='wrap' >
                 <form className="search">
-                    <input type="text" 
-                           className='searchInput' 
-                           placeholder='Search your city'
-                           value={query}
-                           onChange={(e) => onInputChange(e.target.value)} />
+                    <input type="text"
+                        className='searchInput'
+                        placeholder='Search your city'
+                        value={query}
+                        onChange={(e) => onInputChange(e.target.value)} />
                     <button type='submit' className='searchButton'>
                         <img src={SearchIcon} alt="" />
                     </button>
@@ -49,14 +49,14 @@ const Searchbar = () => {
                 {citiesList && (
                     <div className='cityWrap' >
                         {citiesList.map(cities => {
-                            return  <input key={cities.id} type='text' readOnly className='city' onClick={() => onAutoSearchClick(cities.name)} value={cities.name}/>
+                            return <input key={cities.id} type='text' readOnly className='city' onClick={() => onAutoSearchClick(cities.name)} value={cities.name} />
                         })}
                     </div>
                 )}
 
             </div>
         </div>
-        
+
     );
 };
 
