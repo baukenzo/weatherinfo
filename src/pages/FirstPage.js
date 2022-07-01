@@ -1,13 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import {motion} from 'framer-motion';
-
-const FirstPage = () => {
-    return (
-        <motion.h1 initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
-            First Page
-        </motion.h1>
-=======
 import m from "./main.module.css";
 
 const FirstPage = () => {
@@ -97,7 +88,6 @@ const FirstPage = () => {
                 </div>
             </footer>
         </div>
->>>>>>> 8deccadb7947fa3b8a98e6d06c2f1405088a90a3
     );
 };
 

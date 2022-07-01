@@ -25,7 +25,6 @@ const HomePage = () => {
     // },[today])
 
     return (
-<<<<<<< HEAD
         <motion.div className={s.home} initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             <Searchbar/> 
             {today ? 
@@ -38,17 +37,6 @@ const HomePage = () => {
                 </>
             : 'pusto'}
         </motion.div>
-=======
-        <div className={s.home}>
-            <Searchbar/>
-            <br/>
-            <div className={s.wrapper}>
-                <ThisDay/>
-                <ThisDayInfo />
-            </div>
-            <Days/>
-        </div>
->>>>>>> 8deccadb7947fa3b8a98e6d06c2f1405088a90a3
     );
 };
 
