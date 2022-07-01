@@ -1,77 +1,35 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card } from './Card';
 import s from './Days.module.scss';
 import { Tabs } from './Tabs';
+import weather1 from '../../images/weather1.gif';
 
 
 
 export const Days = (props) => {
-  const days = [
-    {
-      day: 'Сегодня',
-      day_info: '28 авг',
-      icon_id: 'sun',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'Облачно',
-    },
-    {
-      day: 'Завтра',
-      day_info: '29 авг',
-      icon_id: 'small_rain_sun',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'небольшой дождь и солнце',
-    },
-    {
-      day: 'Ср',
-      day_info: '30 авг',
-      icon_id: 'small_rain',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'небольшой дождь',
-    },
-    {
-      day: 'Чт',
-      day_info: '28 авг',
-      icon_id: 'mainly_cloudy',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'Облачно',
-    },
-    {
-      day: 'Пт',
-      day_info: '28 авг',
-      icon_id: 'rain',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'Облачно',
-    },
-    {
-      day: 'Сб',
-      day_info: '28 авг',
-      icon_id: 'sun',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'Облачно',
-    },
-    {
-      day: 'Вс',
-      day_info: '28 авг',
-      icon_id: 'sun',
-      temp_day: '+18',
-      temp_night: '+15',
-      info: 'Облачно',
-    },
-  ];
+  const {today, days3} = useSelector(state => state);
   return (
-    <>
-      <Tabs />
+    <> 
+      {today.current ? 
+      <>
+        <Tabs />
+        {!days3.forecast ? <div style={{height: '400px', display: 'flex', justifyContent: 'center' }}>
+            <img style={{width: '100%', objectFit: 'cover'}} src={weather1} alt="" />
+           </div> : null}
+      </>
+      :
+        null
+      }
+      {days3.forecast ? 
       <div className={s.days}>
-        {days.map((day) => (
-          <Card day={day} key={day.day} />
-        ))}
-      </div>
+          {
+            days3.forecast.forecastday.map((day) => (
+              <Card day={day} key={day.date} />
+            ))
+          }
+      </div> :
+      null}
     </>
   );
 };

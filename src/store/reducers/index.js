@@ -1,6 +1,9 @@
 const initialState = {
     query: '',
-    citiesList: []
+    citiesList: [],
+    today: [],
+    days3: [],
+    error: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +16,23 @@ const reducer = (state = initialState, action) => {
         case 'SEARCHED_CITIES_LIST':
             return {
                 ...state,
+                error: false,
                 citiesList: action.payload
+            }
+        case 'ON_SUBMIT':
+            return {
+                ...state,
+                today: action.payload
+            }
+        case 'ON_CLICK_DAYS_3': 
+            return {
+                ...state,
+                days3: action.payload
+            }
+        case 'ON_ERROR':
+            return {
+                ...state,
+                error: true
             }
         default: return state
     }

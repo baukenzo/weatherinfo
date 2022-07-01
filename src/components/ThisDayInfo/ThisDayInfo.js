@@ -1,5 +1,6 @@
 import React from 'react';
 // import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './ThisDayInfo.module.scss';
 import cloud from '../../assets/images/cloud.png';
 import { ThisDayItem } from './ThisDayItem';
@@ -8,28 +9,35 @@ import { ThisDayItem } from './ThisDayItem';
 
 
 export const ThisDayInfo = (props) => {
-  const items = [
+  const current = useSelector(state => state.today.current)
+
+  console.log(current)
+  const items = current ? [
     {
       icon_id: 'temp',
-      name: 'Температура',
-      value: '20° - ощущается как 17°',
+      name: 'Temperature',
+      value: `${current.temp_c}° - feels like ${current.feelslike_c}°`,
     },
     {
       icon_id: 'pressure',
-      name: 'Давление',
-      value: '765 мм ртутного столба - нормальное',
+      name: 'Pressure',
+      value: `${current.pressure_mb} millimeters of mercury`,
     },
     {
       icon_id: 'precipitation',
-      name: 'Осадки',
-      value: 'Без осадков',
+      name: 'Precipitation',
+      value: `${current.condition.text}`,
     },
     {
       icon_id: 'wind',
-      name: 'Ветер',
-      value: '3 м/с юго-запад - легкий ветер',
+      name: 'Wind',
+      value: `${current.wind_kph} km/h ${current.wind_dir}`,
     },
-  ];
+  ] : [];
+
+  if (!current) {
+      return null
+  }
   return (
     <div className={s.this__day_info}>
       <div className={s.this__day_info_items}>

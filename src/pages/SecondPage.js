@@ -1,10 +1,11 @@
 import React from 'react';
+import {motion} from 'framer-motion';
 
 const SecondPage = () => {
     return (
-        <h1>
+        <motion.h1 initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             Second Page
-        </h1>
+        </motion.h1>
     );
 };
 

@@ -11,3 +11,17 @@ export const searchedCitiesList = (cities) => {
         payload: cities
     }
 }
+
+export const onSubmitSearchButton = (today) => {
+    return {
+        type: 'ON_SUBMIT',
+        payload: today
+    }
+}
+
+export const onClick3days = (days3) => {
+    return {
+        type: 'ON_CLICK_DAYS_3',
+        payload: days3
+    }
+}

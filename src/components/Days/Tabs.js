@@ -1,28 +1,44 @@
 import React from 'react';
 import s from './Days.module.scss';
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { onClick3days } from '../../store/actions';
 
 export const Tabs = (props) => {
+  const {query} = useSelector(state => state);
+  const dispatch = useDispatch();
+
+
   const tabs = [
     {
-      value: 'На неделю',
+      value: '3 days',
+      disabled: false
     },
     {
-      value: 'На 10 дней',
+      value: '10 days',
+      disabled: true
     },
     {
-      value: 'На месяц',
+      value: 'Month',
+      disabled: true
     },
   ];
+
+  const click3days = () => {
+    axios.get(`http://api.weatherapi.com/v1/forecast.json?key=d79239169e7340be9c083833222406&q=${query}&days=3&aqi=yes&alerts=yes`).then(res => dispatch(onClick3days(res.data)))
+    console.log('click3days')
+  }
+
   return (
     <div className={s.tabs}>
       <div className={s.tabs__wrapper}>
         {tabs.map(tab => (
-          <div className={s.tab} key={tab.value}>
+          <div disabled={tab.disabled} onClick={() => click3days()} className={s.tab}  key={tab.value}>
             {tab.value}
           </div>
         ))}
       </div>
-      <div className={s.cancel}>Отменить</div>
+      <div className={s.cancel}>Cancel</div>
     </div>
   );
 };

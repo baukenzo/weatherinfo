@@ -1,10 +1,11 @@
 import React from 'react';
+import {motion} from 'framer-motion';
 
 const FirstPage = () => {
     return (
-        <h1>
+        <motion.h1 initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             First Page
-        </h1>
+        </motion.h1>
     );
 };
 
