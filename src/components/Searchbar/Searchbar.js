@@ -9,8 +9,12 @@ import SearchIcon from '../../images/searchSvg.svg';
 
 const Searchbar = () => {
     console.log('render')
+<<<<<<< HEAD
     const [inProp, setInProp] = useState(false);
     const {query, citiesList, today} = useSelector(state => state);
+=======
+    const { query, citiesList } = useSelector(state => state);
+>>>>>>> 8deccadb7947fa3b8a98e6d06c2f1405088a90a3
     const dispatch = useDispatch();
 
     const onInputChange = useCallback((value) => {
@@ -27,7 +31,7 @@ const Searchbar = () => {
             dispatch(searchedCitiesList([]))
             console.log(citiesList, 'uadalena')
         }
-        
+
     }, [dispatch, citiesList])
 
     function onAutoSearchClick(value) {
@@ -47,17 +51,27 @@ const Searchbar = () => {
     return (
         <div className='search-wrap'>
             <div className='wrap' >
+<<<<<<< HEAD
                 <form onSubmit={(e) => onSubmitButton(e)}  className="search">
                     <input  type="text" 
                            className='searchInput' 
                            placeholder='Search your city'
                            value={query}
                            onChange={(e) => onInputChange(e.target.value)} />
+=======
+                <form className="search">
+                    <input type="text"
+                        className='searchInput'
+                        placeholder='Search your city'
+                        value={query}
+                        onChange={(e) => onInputChange(e.target.value)} />
+>>>>>>> 8deccadb7947fa3b8a98e6d06c2f1405088a90a3
                     <button type='submit' className='searchButton'>
                         <img src={SearchIcon} alt="" />
                     </button>
                 </form>
                 {citiesList && (
+<<<<<<< HEAD
                     <CSSTransition in={inProp} timeout={900} classNames="my-node">
                         <div className='cityWrap' >
                             {citiesList.map(cities => {
@@ -65,11 +79,18 @@ const Searchbar = () => {
                             })}
                         </div>
                     </CSSTransition>
+=======
+                    <div className='cityWrap' >
+                        {citiesList.map(cities => {
+                            return <input key={cities.id} type='text' readOnly className='city' onClick={() => onAutoSearchClick(cities.name)} value={cities.name} />
+                        })}
+                    </div>
+>>>>>>> 8deccadb7947fa3b8a98e6d06c2f1405088a90a3
                 )}
 
             </div>
         </div>
-        
+
     );
 };
 
