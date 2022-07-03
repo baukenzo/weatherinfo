@@ -1,9 +1,10 @@
 import React from 'react';
 import m from "./main.module.css";
+import {motion} from 'framer-motion';
 
 const FirstPage = () => {
     return (
-        <div class="frst-p">
+        <motion.div class="frst-p" initial={{width: 0, height: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             <header id="header" class={m.header}>
                 <div class={m.container1}>
                     <div class={m.nav}>
@@ -86,7 +87,7 @@ const FirstPage = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </motion.div>
     );
 };
 

@@ -25,3 +25,9 @@ export const onClick3days = (days3) => {
         payload: days3
     }
 }
+
+export const onError = () => {
+    return {
+        type: 'ON_ERROR'
+    }
+}
