@@ -3,7 +3,7 @@ import {motion} from 'framer-motion';
 
 const SecondPage = () => {
     return (
-        <motion.h1 initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
+        <motion.h1 initial={{width: 0, height: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             Second Page
         </motion.h1>
     );

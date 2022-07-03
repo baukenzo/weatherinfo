@@ -9,7 +9,7 @@ import s from './Home.module.scss';
 import {motion} from 'framer-motion';
 
 const HomePage = () => {
-    const {today} = useSelector(state => state)
+    const {today, error} = useSelector(state => state)
     console.log(today == true)
 
     // const RenderFunction = () => useMemo(() => {
@@ -25,9 +25,12 @@ const HomePage = () => {
     // },[today])
 
     return (
-        <motion.div className={s.home} initial={{width: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
+        <motion.div className={s.home} initial={{width: 0, height: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             <Searchbar/> 
-            {today ? 
+            {error && (
+                <h1>oshibka zaprosa</h1>
+            )}
+            {today && !error ? 
                 <>
                     <div className={s.wrapper}>
                         <ThisDay/>
@@ -35,7 +38,7 @@ const HomePage = () => {
                     </div>
                     <Days/>
                 </>
-            : 'pusto'}
+            : null}
         </motion.div>
     );
 };

@@ -16,12 +16,12 @@ const reducer = (state = initialState, action) => {
         case 'SEARCHED_CITIES_LIST':
             return {
                 ...state,
-                error: false,
                 citiesList: action.payload
             }
         case 'ON_SUBMIT':
             return {
                 ...state,
+                error: false,
                 today: action.payload
             }
         case 'ON_CLICK_DAYS_3': 
