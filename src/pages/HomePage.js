@@ -27,8 +27,10 @@ const HomePage = () => {
     return (
         <motion.div className={s.home} initial={{width: 0, height: 0}} animate={{width: '100%'}} exit={{x: window.innerWidth}}>
             <Searchbar/> 
+            <br/>
+            <br/>
             {error && (
-                <h1>oshibka zaprosa</h1>
+                <h1>Error! Write a correct city.</h1>
             )}
             {today && !error ? 
                 <>
@@ -36,6 +38,8 @@ const HomePage = () => {
                         <ThisDay/>
                         <ThisDayInfo />
                     </div>
+                    <br/>
+                    <br/>
                     <Days/>
                 </>
             : null}

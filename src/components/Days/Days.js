@@ -14,7 +14,7 @@ export const Days = (props) => {
       {today.current ? 
       <>
         <Tabs />
-        {!days3.forecast ? <div style={{height: '400px', display: 'flex', justifyContent: 'center' }}>
+        {!days3.forecast ? <div style={{height: '800px', display: 'flex', justifyContent: 'center' }}>
             <img style={{width: '100%', objectFit: 'cover'}} src={weather1} alt="" />
            </div> : null}
       </>
