@@ -92,3 +92,11 @@
 .tabs__wrapper {
   display: flex;
 }
+
+@media only screen and (max-width: 361px) {
+  .cancel,
+.tab {
+  padding: 0px;
+
+}
+}
