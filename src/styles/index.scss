@@ -212,13 +212,16 @@ code {
 
 @media only screen and (max-width: 361px) {
 
-  .nav {
-    // display: none;
-  }
-
   .search-wrap {
     width: 100%;
-    position: fixed;
+  }
+
+  .wrap .search .searchButton {
+    margin: 0;
+  }
+
+  .wrap {
+    width: 50%;
   }
 
 }
