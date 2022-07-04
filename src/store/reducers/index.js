@@ -3,7 +3,8 @@ const initialState = {
     citiesList: [],
     today: [],
     days3: [],
-    error: false
+    error: false,
+    loading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +34,21 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: true
+            }
+        case 'CANCEL_ERROR':
+            return {
+                ...state,
+                error: false
+            }
+        case 'LOADING_TRUE':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'LOADING_FALSE':
+            return {
+                ...state,
+                loading: false
             }
         default: return state
     }

@@ -31,3 +31,22 @@ export const onError = () => {
         type: 'ON_ERROR'
     }
 }
+
+export const cancelError = () => {
+    return {
+        type: 'CANCEL_ERROR'
+    }
+}
+
+export const loadingTrue = () => {
+    return {
+        type: 'LOADING_TRUE'
+    }
+}
+export const loadingFalse = () => {
+    return {
+        type: 'LOADING_FALSE'
+    }
+}
+
+
