@@ -4,7 +4,8 @@ const initialState = {
     today: [],
     days3: [],
     error: false,
-    loading: false
+    loading: false,
+    secondLoading: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -49,6 +50,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false
+            }
+        case 'SECOND_LOADING_ON':
+            return {
+                ...state,
+                secondLoading: true
+            }
+        case 'SECOND_LOADING_OFF':
+            return {
+                ...state,
+                secondLoading: false
             }
         default: return state
     }

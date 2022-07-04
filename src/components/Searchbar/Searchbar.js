@@ -66,7 +66,10 @@ const Searchbar = () => {
             })
 
         // axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(dispatch(onError()))
+       setTimeout(() => {
         dispatch(loadingFalse())
+       }, 400);
+        
         dispatch(onClick3days([]))
     }
 

@@ -6,6 +6,8 @@ import { ThisDayInfo } from '../components/ThisDayInfo/ThisDayInfo';
 import { useSelector } from 'react-redux';
 import s from './Home.module.scss';
 import {motion} from 'framer-motion';
+import loader from '../images/loading.gif'
+import errorPage from '../images/errorPage.gif'
 
 const HomePage = () => {
     const {today, error, loading} = useSelector(state => state)
@@ -16,14 +18,13 @@ const HomePage = () => {
             <br/>
             <br/>
 
-            {loading ? "loading" :
-            error ? <h1>Error! Write a correct city.</h1> : null}
-
-            {/* {loading ? "loading..." : null}
-            {error && (
-                <h1>Error! Write a correct city.</h1>
-            )} */}
-            {today && !error ? 
+            {loading ? 
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px 25px'}}><img style={{width: '150px'}} src={loader} alt="" /></div>
+            :
+            error ? 
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px 25px'}}><img className='errorPage' src={errorPage} alt="" /></div>
+             : 
+            today && !error ? 
                 <>
                     <div className={s.wrapper}>
                         <ThisDay/>
@@ -33,7 +34,14 @@ const HomePage = () => {
                     <br/>
                     <Days/>
                 </>
-            : null}
+            : null
+            }
+
+            {/* {loading ? "loading..." : null}
+            {error && (
+                <h1>Error! Write a correct city.</h1>
+            )} */}
+            {}
         </motion.div>
     );
 };

@@ -49,4 +49,16 @@ export const loadingFalse = () => {
     }
 }
 
+export const secondLoadingOn = () => {
+    return {
+        type: 'SECOND_LOADING_ON'
+    }
+}
+
+export const secondLoadingOff = () => {
+    return {
+        type: 'SECOND_LOADING_OFF'
+    }
+}
+
 
