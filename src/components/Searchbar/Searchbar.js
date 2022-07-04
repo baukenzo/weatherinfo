@@ -16,7 +16,7 @@ const Searchbar = () => {
         dispatch(typingInSearch(value))
 
         if (value.length > 3) {
-            axios.get(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${value}`).then(res => dispatch(searchedCitiesList(res.data))).catch(console.log('ошибка запроса к списку городов'))
+            axios.get(`https://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${value}`).then(res => dispatch(searchedCitiesList(res.data))).catch(console.log('ошибка запроса к списку городов'))
             setInProp(true)
         }
 
@@ -56,7 +56,7 @@ const Searchbar = () => {
         //     })
         // }
 
-        axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(function (error) {
+        axios.get(`https://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(function (error) {
                 if (error.response) {
                     console.log(error.response.status);
                     dispatch(onError())

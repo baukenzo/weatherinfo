@@ -25,7 +25,7 @@ export const Tabs = (props) => {
   ];
 
   const click3days = () => {
-    axios.get(`http://api.weatherapi.com/v1/forecast.json?key=d79239169e7340be9c083833222406&q=${query}&days=3&aqi=yes&alerts=yes`).then(res => dispatch(onClick3days(res.data)))
+    axios.get(`https://api.weatherapi.com/v1/forecast.json?key=d79239169e7340be9c083833222406&q=${query}&days=3&aqi=yes&alerts=yes`).then(res => dispatch(onClick3days(res.data)))
   }
 
   return (
