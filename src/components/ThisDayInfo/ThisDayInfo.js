@@ -1,6 +1,5 @@
 import React from 'react';
-// import Select from 'react-select';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import s from './ThisDayInfo.module.scss';
 import cloud from '../../assets/images/cloud.png';
 import { ThisDayItem } from './ThisDayItem';
@@ -11,7 +10,6 @@ import { ThisDayItem } from './ThisDayItem';
 export const ThisDayInfo = (props) => {
   const current = useSelector(state => state.today.current)
 
-  console.log(current)
   const items = current ? [
     {
       icon_id: 'temp',

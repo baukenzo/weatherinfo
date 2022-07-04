@@ -1,33 +1,27 @@
 import React from 'react';
-import { useEffect, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
-import { typingInSearch, searchedCitiesList, onSubmitSearchButton, onClick3days, onError} from '../../store/actions';
+import { typingInSearch, searchedCitiesList, onSubmitSearchButton, onClick3days, onError, cancelError, loadingTrue, loadingFalse} from '../../store/actions';
 
 import SearchIcon from '../../images/searchSvg.svg';
 
 const Searchbar = () => {
-    console.log('render')
     const [inProp, setInProp] = useState(false);
-    const {query, citiesList, today} = useSelector(state => state);
+    const {query, citiesList} = useSelector(state => state);
     const dispatch = useDispatch();
 
     const onInputChange = useCallback((value) => {
         dispatch(typingInSearch(value))
 
         if (value.length > 3) {
-            // fetch(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${query}`).then(response => response.json()).then(response=> setList(response)).catch(response=> setList(response))
-            axios.get(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${value}`).then(res => dispatch(searchedCitiesList(res.data)))
-
-            
-            console.log(citiesList)
+            axios.get(`http://api.weatherapi.com/v1/search.json?key=d79239169e7340be9c083833222406&q=${value}`).then(res => dispatch(searchedCitiesList(res.data))).catch(console.log('ошибка запроса к списку городов'))
             setInProp(true)
         }
 
         if (value.length < 4) {
             dispatch(searchedCitiesList([]))
-            console.log(citiesList, 'uadalena')
         }
 
     }, [dispatch, citiesList])
@@ -39,12 +33,40 @@ const Searchbar = () => {
 
     function onSubmitButton(e) {
         e.preventDefault();
-        console.log('onsubmit')
-        dispatch(searchedCitiesList([]))
+        dispatch(cancelError());
+        dispatch(searchedCitiesList([]));
+        dispatch(loadingTrue())
 
+        // try {
+        //     axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(function (error) {
+        //         if (error.response) {
+        //             console.log(error.response.status);
+        //         } else {
+        //             dispatch(onError())
+        //         }
+        //     })
+        //     dispatch(loadingTrue())
+        // } catch (error) {
+        //     axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(function (error) {
+        //         if (error.response) {
+        //             console.log(error.response.status);
+        //         } else {
+        //             dispatch(onError())
+        //         }
+        //     })
+        // }
 
-        axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(dispatch(onError()))
+        axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(function (error) {
+                if (error.response) {
+                    console.log(error.response.status);
+                    dispatch(onError())
+                } else {
+                    dispatch(onError())
+                }
+            })
 
+        // axios.get(`http://api.weatherapi.com/v1/current.json?key=d79239169e7340be9c083833222406&q=${query}&aqi=yes`).then(res => dispatch(onSubmitSearchButton(res.data))).catch(dispatch(onError()))
+        dispatch(loadingFalse())
         dispatch(onClick3days([]))
     }
 
