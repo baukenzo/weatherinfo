@@ -25,7 +25,7 @@ export const Days = (props) => {
       <div className={s.days}>
           {
             days3.forecast.forecastday.map((day) => (
-              <Card day={day} key={day.date} />
+              <Car d day={day} key={day.date} />
             ))
           }
       </div> :
