@@ -14,8 +14,8 @@ export const Card = ({ day }) => {
         {/* <GlobalSvgSelector id={day.icon_id} /> */}
         <img src={day.day.condition.icon} alt="" />
       </div>
-      <div className={s.temp__day}>{day.day.maxtemp_c}</div>
-      <div className={s.temp__night}>{day.day.mintemp_c}</div>
+      <div className={s.temp__day}>{day.day.maxtemp_c} °C</div>
+      <div className={s.temp__night}>{day.day.mintemp_c} °C</div>
       <div className={s.info}>{day.day.condition.text}</div>
     </div>
   );

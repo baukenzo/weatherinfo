@@ -15,7 +15,6 @@ const FirstPage = () => {
                         <p class={m.p2}>We make a weather forecast, <br />show what the weather is like anywhere in the world</p>
                         <img src="./img/Group 1348.svg" alt="" class={m.ellipse} />
                     </div>
-                    <div>sdf</div>
                 </div>
             </header>
             <div class={m.main}>
